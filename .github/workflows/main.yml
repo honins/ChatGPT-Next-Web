@@ -1,0 +1,34 @@
+name: Sync and Push
+
+on:
+  schedule:
+    - cron: '0 * * * *' # 运行此操作每小时一次，你可以根据需要调整时间表
+
+jobs:
+  sync-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source repository
+      uses: actions/checkout@v2
+      with:
+        repository: Yidadaa/ChatGPT-Next-Web
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        path: source-repo
+
+    - name: Checkout target repository
+      uses: actions/checkout@v2
+      with:
+        repository: honins/ChatGPT-Next-Web
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        path: target-repo
+
+    - name: Sync and push changes
+      run: |
+        rsync -av --exclude '.git' source-repo/ target-repo/
+        cd target-repo
+        git config user.name "hhonins"
+        git config user.email "hhonins@gmail.com"
+        git add .
+        git commit -m "Sync from Yidadaa/ChatGPT-Next-Web"
+        git push
