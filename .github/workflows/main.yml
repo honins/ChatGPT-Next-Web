@@ -2,7 +2,7 @@ name: Sync and Push
 
 on:
   schedule:
-    - cron: '0 * * * *' # 运行此操作每小时一次，你可以根据需要调整时间表
+    - cron: '*/10 * * * *' # 运行此操作每小时一次，你可以根据需要调整时间表
 
 jobs:
   sync-and-push:
@@ -13,14 +13,14 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: Yidadaa/ChatGPT-Next-Web
-        token: ${{ secrets.action sectrt }}
+        token: ${{ secrets.action_secret }}
         path: source-repo
 
     - name: Checkout target repository
       uses: actions/checkout@v2
       with:
         repository: honins/ChatGPT-Next-Web
-        token: ${{ secrets.action sectrt }}
+        token: ${{ secrets.action_secret }}
         path: target-repo
 
     - name: Sync and push changes
