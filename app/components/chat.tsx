@@ -294,8 +294,8 @@ function ChatAction(props: {
   const iconRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState({
-    full: 20,
-    icon: 20,
+    full: 16,
+    icon: 16,
   });
 
   function updateWidth() {
@@ -308,10 +308,6 @@ function ChatAction(props: {
       icon: iconWidth,
     });
   }
-
-  useEffect(() => {
-    setTimeout(updateWidth, 100);
-  }, []);
 
   return (
     <div
