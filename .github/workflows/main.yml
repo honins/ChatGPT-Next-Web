@@ -2,7 +2,7 @@ name: Sync and Push
 
 on:
   schedule:
-    - cron: '*/10 * * * *' # 运行此操作每小时一次，你可以根据需要调整时间表
+    - cron: '0 0 * * *' # 运行此操作每小时一次，你可以根据需要调整时间表
 
 jobs:
   sync-and-push:
